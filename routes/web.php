@@ -21,19 +21,20 @@ Route::get('/', function () {
     $posts = [];
 
     foreach ($files as $file) {
-        $document[] = YamlFrontMatter::parseFile($file);
+        $document = YamlFrontMatter::parseFile($file);
 
-        ddd($document->body);
+        // ddd($document->title);
 
         $posts[] = new Post(
             $document->title,
             $document->excerpt,
             $document->date,
-            $document->body,
+            $document->body(),
+            $document->slug,
         );
     }
 
-    // ddd($posts);
+    // ddd($posts[0]->title);
 
     // $document = YamlFrontMatter::parseFile(
     //     resource_path('posts/my-fourth-post.html')
@@ -41,9 +42,9 @@ Route::get('/', function () {
 
     // ddd($document->title);
 
-    // return view('posts', [
-    //     'posts' => Post::all()
-    // ]);
+    return view('posts', [
+        'posts' => $posts
+    ]);
 });
 
 Route::get('posts/{post}', function ($slug) {
