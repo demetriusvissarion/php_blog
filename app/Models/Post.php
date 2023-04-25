@@ -24,10 +24,10 @@ class Post
 
     public static function find($slug)
     {
-        if(!file_exists($path = resource_path("posts/{$slug}.html"))) {
-            throw new ModelNotFoundException();
-        }
+        // new approach: of all blog posts, find the one with a slug that matches the one that was requested.
+        // $posts = static::all();
+        // return $posts->firstWhere('slug', $slug);
 
-        return cache()->remember("posts.{$slug}", 1200, fn() => file_get_contents($path));
+        return static::all()->firstWhere('slug', $slug);
     }
 }
