@@ -27,10 +27,6 @@ class Post
 
     public static function find($slug)
     {
-        // new approach: of all blog posts, find the one with a slug that matches the one that was requested.
-        // $posts = static::all();
-        // return $posts->firstWhere('slug', $slug);
-
         return static::all()->firstWhere('slug', $slug);
     }
 }

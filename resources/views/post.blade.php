@@ -5,12 +5,11 @@
 
 <body>
     <article>
-        <h1><?= $post->title; ?></h1>
-        <h6><?= 'Date:  ' . DateTime::createFromFormat('U', $post->date)->format('d/m/Y'); ?></h6>
-
+        <h1> {{ $post->title }} </h1>
+        <h6>{{ 'Date:  ' . DateTime::createFromFormat('U', $post->date)->format('d/m/Y') }}</h6>
 
         <div>
-            <?= $post->body; ?>
+            {!! $post->body !!}
         </div>
     </article>
 
