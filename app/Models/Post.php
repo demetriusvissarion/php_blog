@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
+
+    // To enable migrate mass assignment:
+    protected $fileable = ['title', 'excerpt', 'body']; // declare params the user is allowed to edit
+    // protected $guarded = [];  // opposite of $fileable, here you declare the params the user is not allowed to edit, if empty then mass assignment is enabled for all fields
 }
