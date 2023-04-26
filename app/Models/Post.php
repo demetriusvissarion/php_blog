@@ -13,8 +13,10 @@ class Post extends Model
     // protected $fileable = ['title', 'excerpt', 'body']; // declare params the user is allowed to edit
     protected $guarded = [];  // opposite of $fileable, here you declare the params the user is not allowed to edit, if empty then mass assignment is enabled for all fields
 
-    public function getRouteKeyName()
+    // Eloquent relationship
+    public function category()
     {
-        return 'slug';
+        return $this->belongsTo(Category::class);
     }
+
 }
