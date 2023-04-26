@@ -22,9 +22,11 @@ Route::get('/', function () {
     ]);
 });
 
-Route::get('posts/{post}', function ($id) {
+// this binds a route key to an underlying eloquent model
+// route name has to match up with the variable name
+Route::get('posts/{post:slug}', function (Post $post) {
     return view('post', [
-        'post' => Post::findOrFail($id)
+        'post' => $post
     ]);
 
 });
