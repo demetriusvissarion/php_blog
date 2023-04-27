@@ -19,6 +19,9 @@ class Post extends Model
         return $this->belongsTo(Category::class);
     }
 
+    // a better way of sorting the n+1 problem from web.php:
+    protected $with = ['category', 'author'];  // this becomes a default for all queries posted
+
     public function user()
     {
         return $this->belongsTo(User::class);
