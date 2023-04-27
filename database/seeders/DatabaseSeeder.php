@@ -37,16 +37,26 @@ class DatabaseSeeder extends Seeder
             'name' => 'Work',
             'slug' => 'work'
         ]);
-        // foreach($users as $user){
+
+        // (me) alternatively rename user to users and foreach($users as $user){ Post::create([
+
         Post::create([
             'user_id' => $user[0]->id,
             'category_id' => $family->id,
             'title' => 'My Family Post',
             'slug' => 'my-family-post',
-            'excerpt' => 'Excerpt for my post',
+            'excerpt' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>',
             'body' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique velitut lorem commodo viverra. Quisque tellus lorem, egestas sit amet urna a, tincidunt lacus. Maecenas hendrerit tellus sed ullamcorper laoreet. Praesent vitae mauris at erat efficitur vehicula nec eget leo. Vivamus porttitor, lorem vel porta lobortis, quam tellus elementum leo, vel faucibus felis ligula sed enim. Maecenas cursus tellus a ullamcorper laoreet. Aenean leo diam, convallis faucibus venenatis ac, tincidunt sed erat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla lobortis finibus molestie. Nulla eu augue ut lectus luctus gravida quis sed lectus. Aenean accumsan arcu at suscipit rhoncus. Aenean lobortis ligula ligula, vel luctus urna ultricies nec.</p>',
         ]);
 
+        Post::create([
+            'user_id' => $user[0]->id,
+            'category_id' => $work->id,
+            'title' => 'My Work Post',
+            'slug' => 'my-work-post',
+            'excerpt' => '<p>Nam tristique velitut lorem commodo viverra.</p>',
+            'body' => '<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam tristique velitut lorem commodo viverra. Quisque tellus lorem, egestas sit amet urna a, tincidunt lacus. Maecenas hendrerit tellus sed ullamcorper laoreet. Praesent vitae mauris at erat efficitur vehicula nec eget leo. Vivamus porttitor, lorem vel porta lobortis, quam tellus elementum leo, vel faucibus felis ligula sed enim. Maecenas cursus tellus a ullamcorper laoreet. Aenean leo diam, convallis faucibus venenatis ac, tincidunt sed erat. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nulla lobortis finibus molestie. Nulla eu augue ut lectus luctus gravida quis sed lectus. Aenean accumsan arcu at suscipit rhoncus. Aenean lobortis ligula ligula, vel luctus urna ultricies nec.</p>',
+        ]);
 
         //     $title = 'My work post'.rand();
         //     Post::create([
