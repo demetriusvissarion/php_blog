@@ -24,7 +24,7 @@ Route::get('/', function () {
 
     // Eager loading
     return view('posts', [
-        'posts' => Post::with('category')->get()
+        'posts' => Post::latest()->with('category', 'author')->get() // 'author' here fixes the n+1 problem
     ]);
 });
 
