@@ -5,11 +5,13 @@
         @if ($posts->count())
             <x-post-featured-card :post="$posts[0]" />
 
+            @if ($posts->count() > 1) {{-- prevent rendering of empty gridprevent rendering of empty grid --}}
             <div class="lg:grid lg:grid-cols-2">
                 @foreach ($posts->skip(1) as $post)
                     <x-post-card :post="$post" />
                 @endforeach
             </div>
+            @endif
         @else
         <p class="text-center" >No posts yet. Please check back later</p>
         @endif
