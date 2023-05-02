@@ -15,9 +15,7 @@
         <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
             <x-dropdown>
                 <x-slot name="trigger">
-                    <button
-                        @click="show = ! show"
-                        class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex ">
+                    <button class="py-2 pl-3 pr-9 text-sm font-semibold w-full lg:w-32 text-left flex lg:inline-flex ">
                         {{ isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
                         <svg
                             class="transform -rotate-90 absolute pointer-events-none"
@@ -35,9 +33,7 @@
                     </button>
                 </x-slot>
 
-                <a href="/"
-                    class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white "
-                >All</a>
+                <x-dropdown-item>All</x-dropdown-item>
 
                 @foreach ($categories as $category)
                     <a href="/categories/{{ $category->slug }}"

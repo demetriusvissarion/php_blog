@@ -2,7 +2,7 @@
 
 <div x-data="{ show: false }" @click.away="show = false" >
     {{-- Trigger --}}
-    <div>
+    <div @click="show = ! show" >
         {{ $trigger }}
     </div>
 
