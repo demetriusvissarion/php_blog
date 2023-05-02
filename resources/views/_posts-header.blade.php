@@ -14,7 +14,7 @@
         <!--  Category -->
         <div class="relative lg:inline-flex bg-gray-100 rounded-xl">
 
-            <div x-data="{ show: false }" >
+            <div x-data="{ show: false }" @click.away="show = false" >
                 <button
                     @click="show = ! show"
                     class="py-2 pl-3 pr-9 text-sm font-semibold w-full text-left flex lg:inline-flex ">
@@ -35,20 +35,14 @@
                 </button>
 
                 <div x-show="show" class="py-2 absolute bg-gray-100 w-full mt-2 rounded-xl z-50" style="display: none">
-                    <a href="#" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white ">Two</a>
-                    <a href="#" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white ">One</a>
-                    <a href="#" class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white ">Three</a>
+                    @foreach ($categories as $category)
+                    <a href="/categories/{{ $category->slug }}"
+                    class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white ">
+                        {{ ucwords($category->name) }}
+                    </a>
+                    @endforeach
                 </div>
             </div>
-
-
-
-            <!-- <select class="flex-1 appearance-none bg-transparent py-2 pl-3 pr-9 text-sm font-semibold">
-                <option value="category" disabled selected>Category
-                </option>
-                <option value="personal">Personal</option>
-                <option value="business">Business</option>
-            </select> -->
         </div>
 
         <!-- Other Filters -->
