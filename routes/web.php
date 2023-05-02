@@ -19,7 +19,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     // Eager loading
     return view('posts', [
-        'posts' => Post::latest()->get() // ->with('category', 'author') here fixes the n+1 problem, but it's repeating code
+        'posts' => Post::latest()->get(), // ->with('category', 'author') here fixes the n+1 problem, but it's repeating code
+        'categories' => Category::all(),
     ]);
 });
 
