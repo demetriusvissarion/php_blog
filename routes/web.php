@@ -22,7 +22,7 @@ Route::get('/', function () {
         'posts' => Post::latest()->get(), // ->with('category', 'author') here fixes the n+1 problem, but it's repeating code
         'categories' => Category::all(),
     ]);
-});
+})->name('home');
 
 // this binds a route key to an underlying eloquent model
 // route name has to match up with the variable name
@@ -30,7 +30,6 @@ Route::get('posts/{post:slug}', function (Post $post) {
     return view('post', [
         'post' => $post,
     ]);
-
 });
 
 Route::get('categories/{category:slug}', function (Category $category) {
@@ -39,7 +38,7 @@ Route::get('categories/{category:slug}', function (Category $category) {
         'currentCategory' => $category,
         'categories' => Category::all(),
     ]);
-});
+})->name('category'); // named route
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
