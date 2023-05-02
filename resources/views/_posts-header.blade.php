@@ -18,7 +18,7 @@
                 <button
                     @click="show = ! show"
                     class="py-2 pl-3 pr-9 text-sm font-semibold w-full text-left flex lg:inline-flex ">
-                    Categories
+                    {{ isset($currentCategory) ? ucwords($currentCategory->name) : 'Categories' }}
                     <svg
                         class="transform -rotate-90 absolute pointer-events-none"
                         style="right: 12px;"
@@ -35,11 +35,18 @@
                 </button>
 
                 <div x-show="show" class="py-2 absolute bg-gray-100 w-full mt-2 rounded-xl z-50" style="display: none">
-                    @foreach ($categories as $category)
-                    <a href="/categories/{{ $category->slug }}"
+                    <a href="/"
                     class="block text-left px-3 text-sm leading-6 hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white ">
-                        {{ ucwords($category->name) }}
+                        All
                     </a>
+
+                    @foreach ($categories as $category)
+                        <a href="/categories/{{ $category->slug }}"
+                        class="
+                            block text-left px-3 text-sm leading-6
+                            hover:bg-blue-500 hover:text-white focus:bg-blue-500 focus:text-white
+                            {{ isset($currentCategory) && $currentCategory->is($category) ? 'bg-blu-500 text-white' : '' }}
+                        ">{{ ucwords($category->name) }}</a>
                     @endforeach
                 </div>
             </div>

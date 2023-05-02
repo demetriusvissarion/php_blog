@@ -28,19 +28,22 @@ Route::get('/', function () {
 // route name has to match up with the variable name
 Route::get('posts/{post:slug}', function (Post $post) {
     return view('post', [
-        'post' => $post
+        'post' => $post,
     ]);
 
 });
 
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
-        'posts' => $category->posts    // ->load(['category', 'author']) here fixes the n+1 problem, but it's repeating code
+        'posts' => $category->posts,    // ->load(['category', 'author']) here fixes the n+1 problem, but it's repeating code
+        'currentCategory' => $category,
+        'categories' => Category::all(),
     ]);
 });
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
-        'posts' => $author->posts    // ->load(['category', 'author']) here fixes the n+1 problem, but it's repeating code
+        'posts' => $author->posts,    // ->load(['category', 'author']) here fixes the n+1 problem, but it's repeating code
+        'categories' => Category::all(),
     ]);
 });
