@@ -9,18 +9,23 @@ class Post extends Model
 {
     use HasFactory;
 
-    // To enable migrate mass assignment:
-    // protected $fileable = ['title', 'excerpt', 'body']; // declare params the user is allowed to edit
-    protected $guarded = [];  // opposite of $fileable, here you declare the params the user is not allowed to edit, if empty then mass assignment is enabled for all fields
+    protected $guarded = [];
 
-    // Eloquent relationship
+    protected $with = ['category', 'author'];
+
+    public function scopeFilter($query, array $filters)  // will be called using: Post::newQuery()->filter();
+    {
+        if ($filters['search'] ?? false) {
+            $query
+                ->where('title', 'like', '%' . request('search') . '%')
+                ->orWhere('body', 'like', '%' . request('search') . '%');
+        }
+    }
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-
-    // a better way of sorting the n+1 problem from web.php:
-    protected $with = ['category', 'author'];  // this becomes a default for all queries posted
 
     public function user()
     {
@@ -31,5 +36,4 @@ class Post extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
 }
