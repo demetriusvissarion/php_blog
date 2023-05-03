@@ -17,15 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    // Eager loading
+    $posts = Post::latest();
+
+    if (request('search')) {
+        $posts->where('title', 'like', '%' . request('search') . '%');
+    }
+
     return view('posts', [
-        'posts' => Post::latest()->get(), // ->with('category', 'author') here fixes the n+1 problem, but it's repeating code
+        'posts' => $posts->get(),
         'categories' => Category::all(),
     ]);
 })->name('home');
 
-// this binds a route key to an underlying eloquent model
-// route name has to match up with the variable name
 Route::get('posts/{post:slug}', function (Post $post) {
     return view('post', [
         'post' => $post,
@@ -34,7 +37,7 @@ Route::get('posts/{post:slug}', function (Post $post) {
 
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
-        'posts' => $category->posts,    // ->load(['category', 'author']) here fixes the n+1 problem, but it's repeating code
+        'posts' => $category->posts,
         'currentCategory' => $category,
         'categories' => Category::all(),
     ]);
@@ -42,7 +45,7 @@ Route::get('categories/{category:slug}', function (Category $category) {
 
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
-        'posts' => $author->posts,    // ->load(['category', 'author']) here fixes the n+1 problem, but it's repeating code
+        'posts' => $author->posts,
         'categories' => Category::all(),
     ]);
 });
