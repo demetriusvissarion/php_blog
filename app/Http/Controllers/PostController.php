@@ -4,18 +4,18 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 
-class PostsController extends Controller
+class PostController extends Controller
 {
     public function index()
     {
         return view('posts.index', [
-            'posts' => Post::latest()->filter(request(['search', 'category']))->get(),
+            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->get(),
         ]);
     }
 
     public function show(Post $post)
     {
-        return view('post.index', [
+        return view('posts.show', [
             'post' => $post,
         ]);
     }
