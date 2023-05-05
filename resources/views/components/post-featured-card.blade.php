@@ -10,8 +10,8 @@
             <header class="mt-8 lg:mt-0">
                 <div class="space-x-2">
                     <a href="/categories/{{ $post->category->slug }}"
-                        class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
-                        style="font-size: 10px">{{ $post->category->name }}</a>
+                       class="px-3 py-1 border border-blue-300 rounded-full text-blue-300 text-xs uppercase font-semibold"
+                       style="font-size: 10px">{{ $post->category->name }}</a>
                 </div>
                 <div class="mt-4">
                     <h1 class="text-3xl">
@@ -24,24 +24,23 @@
                     </span>
                 </div>
             </header>
-
             <div class="text-sm mt-2 space-y-4">
                 {!! $post->excerpt !!}
             </div>
-
             <footer class="flex justify-between items-center mt-8">
                 <div class="flex items-center text-sm">
                     <img src="/images/lary-avatar.svg" alt="Lary avatar">
                     <div class="ml-3">
                         <h5 class="font-bold">
-                            <a href="/?author={{ $post->author->username }}" >{{ $post->author->name }}</a>
+                            <a href="/?author={{ $post->author->username }}">{{ $post->author->name }}</a>
                         </h5>
                     </div>
                 </div>
+
                 <div class="hidden lg:block">
                     <a href="/posts/{{ $post->slug }}"
-                        class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8">Read
-                        More</a>
+                       class="transition-colors duration-300 text-xs font-semibold bg-gray-200 hover:bg-gray-300 rounded-full py-2 px-8"
+                    >Read More</a>
                 </div>
             </footer>
         </div>
