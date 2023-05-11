@@ -3,7 +3,7 @@
         <main class="max-w-lg mx-auto mt-10 bg-gray-100 border border-gray-200 p-6 rounded-xl">
             <h1 class="text-center font-bold text-xl">Log In!</h1>
 
-            <form method="POST" action="/sessions" class="mt-10">
+            <form method="POST" action="/login" class="mt-10">
                 @csrf
 
                 <div class="mb-6">
@@ -22,7 +22,7 @@
                     >
 
                     @error('email')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -41,7 +41,7 @@
                     >
 
                     @error('password')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
+                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                     @enderror
                 </div>
 
@@ -49,18 +49,9 @@
                     <button type="submit"
                             class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
                     >
-                        Log in
+                        Log In
                     </button>
                 </div>
-
-                @if ($errors->any())
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            <li class="text-red-500 text-xs">{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                @endif
-
             </form>
         </main>
     </section>
