@@ -13,9 +13,6 @@ class SessionsController extends Controller
         return view('sessions.create');
     }
 
-    /**
-     * @throws ValidationException
-     */
     public function store()
     {
         $attributes = request()->validate([

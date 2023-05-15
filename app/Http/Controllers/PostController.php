@@ -8,6 +8,7 @@ class PostController extends Controller
 {
     public function index()
     {
+//        dd('test');
         return view('posts.index', [
             'posts' => Post::latest()->filter(
                         request(['search', 'category', 'author'])
