@@ -1,7 +1,7 @@
 @auth
     <x-panel>
         <form method="POST" action="{{ $post->slug }}/comments">
-        @csrf
+            @csrf
             <header class="flex items-center">
                 <img src="https://i.pravatar.cc/60?u={{ auth()->id() }}"
                      alt=""
@@ -21,12 +21,12 @@
                     required></textarea>
 
                 @error('body')
-                    <span class="text-xs text-red-500">{{ $message }}</span>
+                <span class="text-xs text-red-500">{{ $message }}</span>
                 @enderror
             </div>
 
             <div class="flex justify-end mt-6 pt-6 border-t border-gray-200">
-                <x-submit-button>Post</x-submit-button>
+                <x-form.button>Submit</x-form.button>
             </div>
         </form>
     </x-panel>
