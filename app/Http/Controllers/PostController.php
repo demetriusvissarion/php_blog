@@ -4,15 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Contracts\View\View;
-use Illuminate\Support\Facades\Gate;
-use Illuminate\Validation\Rule;
 
 class PostController extends Controller
 {
     public function index(): View
     {
-//        dd('test');
-//        dd(Gate::allows('admin'));
+        //        dd('test');
+        //        dd(Gate::allows('admin'));
         return view('posts.index', [
             'posts' => Post::latest()->filter(
                 request(['search', 'category', 'author'])
